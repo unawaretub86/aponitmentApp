@@ -1,12 +1,13 @@
-export type Specialties =
-  | "Medicina general"
-  | "Cardiología"
-  | "Medicina interna"
-  | "Dermatología"
-  | "Rehabilitación física"
-  | "Psicología"
-  | "Odontología"
-  | "Radiología";
+export enum Specialties {
+  Medicina_general = "Medicina general",
+  Cardiología = "Cardiología",
+  Medicina_interna = "Medicina interna",
+  Dermatología = "Dermatología",
+  Rehabilitación_física = "Rehabilitación física",
+  Psicología = "Psicología",
+  Odontología = "Odontología",
+  Radiología = "Radiología",
+}
 
 export interface Person {
   name: string;
@@ -18,8 +19,9 @@ export interface Person {
 
 interface Doctor extends Person {
   specialty: Specialties;
-  office: number;
+  office: string;
   email: string;
 }
 
 export type newPerson = Person;
+export type newDoctor = Doctor;

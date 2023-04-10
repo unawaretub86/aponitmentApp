@@ -1,28 +1,27 @@
 import express from "express";
-import appointmentService from "../services/appointmentService";
-// import toNewPerson from "../utils";
+import { createPerson } from "../services/Person";
+import { toNewPerson, toNewDoctor } from "../utils";
+import createDoctor from "../services/Doctor";
 
 const router = express.Router();
 
-router.get("/", (_, res) => {
-  res.send("fetch data");
-});
-
-router.post("/", (req, res) => {
+router.post("/createPerson", (req, res) => {
   try {
-    const { name, surname, age, phone, document } = req.body;
-    // const newPerson = toNewPerson(req.body);
-    const createdPerson = appointmentService({
-      name,
-      surname,
-      age,
-      phone,
-      document,
-    });
-
+    const newPerson = toNewPerson(req.body);
+    const createdPerson = createPerson(newPerson);
     res.json(createdPerson);
   } catch (e) {
-    res.status(400).send(e);
+    res.status(400).json({ message: e + "" });
+  }
+});
+
+router.post("/createDoctor", (req, res) => {
+  try {
+    const newDoctor = toNewDoctor(req.body);
+    const createdDoctor = createDoctor(newDoctor);
+    res.json(createdDoctor);
+  } catch (e) {
+    res.status(400).json({ message: e + "" });
   }
 });
 

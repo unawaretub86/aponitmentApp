@@ -10,7 +10,7 @@ export const createPerson = (newPerson: newPerson) => {
       newPerson.surname,
       newPerson.document,
       newPerson.age,
-      //   newPerson.phone,
+      newPerson.phone,
     ],
   };
 
