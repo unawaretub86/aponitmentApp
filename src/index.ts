@@ -1,5 +1,6 @@
 import express from "express";
-import appointments from "./routes/appointments";
+import doctor from "./routes/doctor";
+import person from "./routes/person";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,7 +14,8 @@ app.get("/ping", (_, res) => {
   res.send("Pong hi there");
 });
 
-app.use("/api/appointments/", appointments);
+app.use("/api/appointments/doctor", doctor);
+app.use("/api/appointments/person", person);
 
 app.listen(PORT);
 console.log("API escuchando en el puerto " + PORT);

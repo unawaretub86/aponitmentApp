@@ -1,4 +1,5 @@
-import { newPerson, newDoctor, Specialties } from "./types";
+import { Specialties } from "./enums";
+import { newPerson, newDoctor } from "./types";
 
 export const toNewPerson = (object: any): newPerson => {
   const newRecord: newPerson = {
