@@ -24,6 +24,12 @@ CREATE TABLE public.appointments (
 	updated_at timestamptz NULL
 );
 
+CREATE TABLE public.specialty (
+	id integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+	specialty_name varchar NOT NULL
+);
+
+
 -- alter 
 ALTER TABLE public.person ALTER COLUMN "document" TYPE bigint USING "document"::bigint;
 ALTER TABLE public.person ALTER COLUMN phone TYPE bigint USING phone::bigint;

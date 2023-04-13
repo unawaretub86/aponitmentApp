@@ -20,7 +20,7 @@ router.get("/", async (_, res) => {
 
     res.json(persons);
   } catch (e) {
-    res.status(400).json({ message: "e.message" });
+    res.status(400).json({ message: "" });
   }
 });
 
