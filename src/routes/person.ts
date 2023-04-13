@@ -4,7 +4,7 @@ import { toNewPerson } from "../utils";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post("/create", (req, res) => {
   try {
     const newPerson = toNewPerson(req.body);
     const createdPerson = createPerson(newPerson);

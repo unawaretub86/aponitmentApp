@@ -4,7 +4,7 @@ import { createDoctor, getDoctors } from "../services/Doctor";
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post("/create", (req, res) => {
   try {
     const newDoctor = toNewDoctor(req.body);
     const createdDoctor = createDoctor(newDoctor);
