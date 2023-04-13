@@ -26,15 +26,15 @@ export const createDoctor = (newDoctor: newDoctor) => {
   });
 };
 
-export const getDoctors = () => {
+export const getDoctors = async () => {
   let query = {
     text: "SELECT * FROM public.doctor",
   };
 
-  return pool
-    .query(query)
-    .then((data) => data.rows)
-    .catch((e) => e.json("Something went"));
+  try {
+    const data = await pool.query(query);
+    return data.rows;
+  } catch (e) {
+    return "Something went wrong";
+  }
 };
-
-//Property 'then' does not exist on type 'void'.

@@ -23,4 +23,15 @@ export const createPerson = (newPerson: newPerson) => {
   });
 };
 
-export default createPerson;
+export const getPersons = async () => {
+  let query = {
+    text: "SELECT * FROM public.person",
+  };
+
+  try {
+    const data = await pool.query(query);
+    return data.rows;
+  } catch (e) {
+    return "Something went wrong";
+  }
+};

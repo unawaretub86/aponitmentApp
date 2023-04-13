@@ -14,12 +14,13 @@ router.post("/", (req, res) => {
   }
 });
 
-router.get("/", (_, res) => {
+router.get("/", async (_, res) => {
   try {
-    res.json(getDoctors);
+    const doctors = await getDoctors();
+
+    res.json(doctors);
   } catch (e) {
-    res.status(400).json({ message: e + "" });
+    res.status(400).json({ message: "e.message" });
   }
 });
-
 export default router;

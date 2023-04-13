@@ -1,5 +1,5 @@
 import express from "express";
-import { createPerson } from "../services/Person";
+import { createPerson, getPersons } from "../services/Person";
 import { toNewPerson } from "../utils";
 
 const router = express.Router();
@@ -11,6 +11,16 @@ router.post("/", (req, res) => {
     res.json(createdPerson);
   } catch (e) {
     res.status(400).json({ message: e + "" });
+  }
+});
+
+router.get("/", async (_, res) => {
+  try {
+    const persons = await getPersons();
+
+    res.json(persons);
+  } catch (e) {
+    res.status(400).json({ message: "e.message" });
   }
 });
 
