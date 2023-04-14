@@ -1,6 +1,6 @@
 // import { Person } from "../types";
 import pool from "../scripts/postgres";
-import { newPerson } from "../types";
+import { newPerson } from "../entitites/types";
 
 export const createPerson = (newPerson: newPerson) => {
   let query = {

@@ -12,5 +12,12 @@ export interface Doctor extends Person {
   email: string;
 }
 
+export interface Appointment {
+  personId: number;
+  doctorId: number;
+  specialtyId: number;
+}
+
 export type newDoctor = Doctor;
 export type newPerson = Person;
+export type newAppointment = Appointment;

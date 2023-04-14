@@ -1,5 +1,5 @@
 import { Specialties } from "./enums";
-import { newPerson, newDoctor } from "./types";
+import { newPerson, newDoctor, newAppointment } from "./entitites/types";
 
 export const toNewPerson = (object: any): newPerson => {
   const newRecord: newPerson = {
@@ -23,6 +23,16 @@ export const toNewDoctor = (object: any): newDoctor => {
     age: isStringOrNumber(object.age),
     phone: isStringOrNumber(object.phone),
     document: isStringOrNumber(object.document),
+  };
+
+  return newRecord;
+};
+
+export const toAppointment = (object: any): newAppointment => {
+  const newRecord: newAppointment = {
+    personId: isStringOrNumber(object.person_id),
+    doctorId: isStringOrNumber(object.doctor_id),
+    specialtyId: isStringOrNumber(object.specialty_id),
   };
 
   return newRecord;
