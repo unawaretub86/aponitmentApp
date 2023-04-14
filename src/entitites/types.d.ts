@@ -16,6 +16,7 @@ export interface Appointment {
   personId: number;
   doctorId: number;
   specialtyId: number;
+  personDocument: number;
 }
 
 export type newDoctor = Doctor;

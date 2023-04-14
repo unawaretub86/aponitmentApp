@@ -33,6 +33,7 @@ export const toAppointment = (object: any): newAppointment => {
     personId: isStringOrNumber(object.person_id),
     doctorId: isStringOrNumber(object.doctor_id),
     specialtyId: isStringOrNumber(object.specialty_id),
+    personDocument: isStringOrNumber(object.person_document),
   };
 
   return newRecord;
