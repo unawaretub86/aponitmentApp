@@ -2,6 +2,7 @@ import express from "express";
 import { toAppointment } from "../utils";
 import {
   createAppointment,
+  getAllAppointments,
   getAppointmentByPersonDocument,
 } from "../services/Appointment";
 
@@ -22,6 +23,16 @@ router.get("/getByDocument/:document", async (req, res) => {
     const appointments = await getAppointmentByPersonDocument(
       req.params.document
     );
+
+    res.json(appointments);
+  } catch (e) {
+    res.status(400).json({ message: "e.message" });
+  }
+});
+
+router.get("/getAll", async (_, res) => {
+  try {
+    const appointments = await getAllAppointments();
 
     res.json(appointments);
   } catch (e) {

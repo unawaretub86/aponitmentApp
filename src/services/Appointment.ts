@@ -39,3 +39,20 @@ WHERE person_document  = $1`,
     return "Something went wrong";
   }
 };
+
+export const getAllAppointments = async () => {
+  let query = {
+    text: `SELECT person.id as person, doctor.name, doctor.surname, doctor.office, doctor.specialty
+FROM appointments
+INNER JOIN doctor ON appointments.doctor_id = doctor.id
+INNER JOIN person ON appointments.person_id = person.id
+INNER JOIN specialty ON appointments.specialty_id = specialty.id`,
+  };
+
+  try {
+    const data = await pool.query(query);
+    return data.rows;
+  } catch (e) {
+    return "Something went wrong";
+  }
+};
