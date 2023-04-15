@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registro Doctor</title>
+</head>
+
+<body>
+    <h1>Ingresa todos los datos</h1>
+    <form id="miFormulario">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="nombre">
+        <br>
+        <label for="surname">Apellido:</label>
+        <input type="text" id="surname" name="apellido">
+        <br>
+        <label for="office">Consultorio:</label>
+        <input type="text" id="office" name="consultorio">
+        <br>
+        <label for="email">Correo:</label>
+        <input type="text" id="email" name="correo">
+        <br>
+        <label for="specialty">Especialidad:</label>
+        <select id="specialty" name="especialidad"></select>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        var specialtyList = document.getElementById("specialty");
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://localhost:8080/api/appointments/specialty", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var specialty = JSON.parse(xhr.responseText);
+
+                    for (var i = 0; i < specialty.length; i++) {
+                        var specialtyName = document.createElement("option");
+                        specialtyName.value = specialty[i].specialtyName;
+                        specialtyList.add(specialtyName);
+                    }
+                } else {
+                    console.error("Error al obtener la lista de países:", xhr.statusText);
+                }
+            }
+        };
+        xhr.send();
+
+        document.getElementById("miFormulario").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            var nombre = document.getElementById("nombre").value;
+            var apellido = document.getElementById("apellido").value;
+            var specialty = specialtyName.value;
+
+            var datos = {
+                nombre: nombre,
+                apellido: apellido,
+                specialty: specialty
+            };
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "api/appointments/doctor/create", true);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        console.log("Datos enviados al backend:", xhr.responseText);
+                    } else {
+                        console.error("")
+                        alert("Hubo un error intentelo de nuevo")
+                    }
+                }
+            }
+        });
+        xhr.send

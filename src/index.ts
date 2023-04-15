@@ -1,4 +1,5 @@
 import express from "express";
+import { engine } from "express-handlebars";
 import doctor from "./routes/doctor";
 import person from "./routes/person";
 import specialty from "./routes/specialty";
@@ -16,10 +17,19 @@ app.get("/ping", (_, res) => {
   res.send("Pong hi there");
 });
 
-app.use("/api/appointments/doctor", doctor);
+app.set("views", __dirname + "/views");
+app.engine(
+  ".hbs",
+  engine({
+    extname: ".hbs",
+  })
+);
+app.set("view engine", "hbs");
+
+app.listen(PORT);
+
+// app.use("/api/createDoctor", doctor);
+app.use("/", doctor);
 app.use("/api/appointments/person", person);
 app.use("/api/appointments/specialty", specialty);
 app.use("/api/appointments", appointment);
-
-app.listen(PORT);
-console.log("API escuchando en el puerto " + PORT);
