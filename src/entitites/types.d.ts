@@ -6,7 +6,9 @@ export interface Person {
   document: number;
 }
 
-export interface Doctor extends Person {
+export interface Doctor {
+  name: string;
+  surname: string;
   specialty: Specialties;
   office: string;
   email: string;

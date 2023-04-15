@@ -4,22 +4,18 @@ import { newDoctor } from "../entitites/types";
 
 export const createDoctor = (newDoctor: newDoctor) => {
   let query = {
-    text: 'INSERT INTO public.doctor ("name", surname, office, email, specialty, document, age, phone) VALUES($1, $2, $3, $4, $5, $6, $7, $8)',
+    text: "INSERT INTO public.doctor (name, surname, specialty, email, office) VALUES($1, $2, $3, $4, $5)",
     values: [
       newDoctor.name,
       newDoctor.surname,
-      newDoctor.office,
-      newDoctor.email,
       newDoctor.specialty,
-      newDoctor.document,
-      newDoctor.age,
-      newDoctor.phone,
+      newDoctor.email,
+      newDoctor.office,
     ],
   };
 
   pool.query(query, (err, res) => {
     if (err) {
-      console.error(err);
       return err.stack;
     }
     return res;

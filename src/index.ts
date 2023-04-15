@@ -4,6 +4,7 @@ import person from "./routes/person";
 import specialty from "./routes/specialty";
 import appointment from "./routes/appointment";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ const PORT = process.env.PORT;
 app.get("/ping", (_, res) => {
   res.send("Pong hi there");
 });
+
+app.use(cors());
 
 app.use("/api/appointments/doctor", doctor);
 app.use("/api/appointments/person", person);

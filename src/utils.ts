@@ -20,11 +20,7 @@ export const toNewDoctor = (object: any): newDoctor => {
     specialty: parseSpecialty(object.specialty),
     email: verifyString(object.email),
     office: verifyString(object.office),
-    age: isStringOrNumber(object.age),
-    phone: isStringOrNumber(object.phone),
-    document: isStringOrNumber(object.document),
   };
-
   return newRecord;
 };
 
