@@ -15,9 +15,7 @@ export interface Doctor {
 }
 
 export interface Appointment {
-  personId: number;
-  doctorId: number;
-  specialtyId: number;
+  specialty: Specialties;
   personDocument: number;
 }
 

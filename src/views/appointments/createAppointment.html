@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Crear Cita</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        select[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Formulario para crear una cita</h1>
+    <form id="appointmentForm">
+        <label for="name">Documento del paciente:</label>
+        <input type="number" id="document" name="document">
+        <br>
+        <label for="specialty">Especialidad:</label>
+        <select id="specialty" name="Especialidad"></select>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+
+    <script>
+        var specialtyList = document.getElementById("specialty");
+        $.ajax({
+            url: "http://localhost:8080/api/appointments/specialty",
+            type: "GET",
+            success: function (specialty) {
+                for (var i = 0; i < specialty.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = specialty[i].specialty_name;
+                    option.text = specialty[i].specialty_name;
+                    specialtyList.add(option);
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Ups there was an error:", error);
+            }
+        });
+
+        document.getElementById("appointmentForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let person_document = document.getElementById("document").value;
+            let specialty = specialtyList.value;
+
+            var data = {
+                person_document,
+                specialty,
+            };
+
+            console.log(data);
+
+            $.ajax({
+                url: "http://localhost:8080/api/appointments/create",
+                type: "POST",
+                data: JSON.stringify(data),
+                contentType: "application/json;charset=UTF-8",
+                success: function (response) {
+                    alert("Appointment created");
+                    document.getElementById("appointmentForm").reset();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ups there was an error:", error);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

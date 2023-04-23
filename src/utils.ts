@@ -26,10 +26,8 @@ export const toNewDoctor = (object: any): newDoctor => {
 
 export const toAppointment = (object: any): newAppointment => {
   const newRecord: newAppointment = {
-    personId: isStringOrNumber(object.person_id),
-    doctorId: isStringOrNumber(object.doctor_id),
-    specialtyId: isStringOrNumber(object.specialty_id),
-    personDocument: isStringOrNumber(object.person_document),
+    specialty: parseSpecialty(object.specialty),
+    personDocument: parseInt(object.person_document),
   };
 
   return newRecord;
@@ -57,13 +55,3 @@ const verifyString = (stringFromRequest: any): string => {
 
   return stringFromRequest;
 };
-
-function isStringOrNumber(numberFromRequest: any): number {
-  if (
-    typeof numberFromRequest === "string" ||
-    (typeof numberFromRequest !== "number" && isNaN(numberFromRequest))
-  ) {
-    throw new Error("Bad type number");
-  }
-  return numberFromRequest;
-}

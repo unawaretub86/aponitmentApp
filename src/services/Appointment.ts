@@ -3,13 +3,8 @@ import pool from "../scripts/postgres";
 
 export const createAppointment = (newAppointment: newAppointment) => {
   let query = {
-    text: "INSERT INTO public.appointments (person_id, doctor_id, specialty_id, person_document) VALUES($1, $2, $3, $4)",
-    values: [
-      newAppointment.personId,
-      newAppointment.doctorId,
-      newAppointment.specialtyId,
-      newAppointment.personDocument,
-    ],
+    text: "INSERT INTO public.appointments (specialty, person_document) VALUES($1, $2)",
+    values: [newAppointment.specialty, newAppointment.personDocument],
   };
 
   pool.query(query, (err, res) => {
@@ -23,12 +18,13 @@ export const createAppointment = (newAppointment: newAppointment) => {
 
 export const getAppointmentByPersonDocument = async (document: string) => {
   let query = {
-    text: `SELECT person.id as person, doctor.name, doctor.surname, doctor.office, doctor.specialty
+    text: `SELECT person.*, appointments.specialty ,
+appointments.person_document,
+appointments.created_at 
 FROM appointments
-INNER JOIN doctor ON appointments.doctor_id = doctor.id
-INNER JOIN person ON appointments.person_id = person.id
-INNER JOIN specialty ON appointments.specialty_id = specialty.id
-WHERE person_document  = $1`,
+INNER JOIN person ON appointments.person_document  = person.document
+WHERE person_document  = $1
+`,
     values: [document],
   };
 
@@ -42,11 +38,7 @@ WHERE person_document  = $1`,
 
 export const getAllAppointments = async () => {
   let query = {
-    text: `SELECT person.id as person, doctor.name, doctor.surname, doctor.office, doctor.specialty, appointments.id 
-FROM appointments
-INNER JOIN doctor ON appointments.doctor_id = doctor.id
-INNER JOIN person ON appointments.person_id = person.id
-INNER JOIN specialty ON appointments.specialty_id = specialty.id`,
+    text: `SELECT * FROM appointments`,
   };
 
   try {

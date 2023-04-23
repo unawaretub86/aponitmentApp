@@ -37,10 +37,9 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Documento del paciente</th>
                 <th>Especialidad</th>
-                <th>Officina</th>
+                <th>Fecha de creacion</th>
             </tr>
         </thead>
         <tbody id="appointments-table"></tbody>
@@ -73,16 +72,14 @@
                 var appointment = appointments[i];
                 var row = table.insertRow();
                 var idColumn = row.insertCell(0);
-                var nameColumn = row.insertCell(1);
-                var surnameColumn = row.insertCell(2);
-                var specialtyColumn = row.insertCell(3);
-                var officeColumn = row.insertCell(4);
+                var documentColumn = row.insertCell(1);
+                var specialtyColumn = row.insertCell(2);
+                var createdColumn = row.insertCell(3);
 
                 idColumn.textContent = appointment.id;
-                nameColumn.textContent = appointment.name;
-                surnameColumn.textContent = appointment.surname;
+                documentColumn.textContent = appointment.person_document;
                 specialtyColumn.textContent = appointment.specialty;
-                officeColumn.textContent = appointment.office;
+                createdColumn.textContent = appointment.created_at;
             }
         }
 

@@ -12,7 +12,7 @@ router.post("/create", (req, res) => {
   try {
     const newAppointment = toAppointment(req.body);
     const createdAppointment = createAppointment(newAppointment);
-    res.json(createdAppointment);
+    res.status(200).json({ appointment: createdAppointment });
   } catch (e) {
     res.status(400).json({ message: e + "" });
   }
