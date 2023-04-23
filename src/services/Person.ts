@@ -3,6 +3,8 @@ import pool from "../scripts/postgres";
 import { newPerson } from "../entitites/types";
 
 export const createPerson = (newPerson: newPerson) => {
+  console.log(newPerson);
+
   let query = {
     text: 'INSERT INTO public.person ("name", surname, "document", age, phone) VALUES($1, $2, $3, $4, $5)',
     values: [
@@ -16,7 +18,6 @@ export const createPerson = (newPerson: newPerson) => {
 
   pool.query(query, (err, res) => {
     if (err) {
-      console.error(err);
       return err.stack;
     }
     return res;

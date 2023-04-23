@@ -4,6 +4,40 @@
 <head>
     <title>Crear Doctor</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -48,11 +82,11 @@
         document.getElementById("doctorForm").addEventListener("submit", function (event) {
             event.preventDefault();
 
-            var name = document.getElementById("name").value;
-            var surname = document.getElementById("surname").value;
-            var office = document.getElementById("office").value;
-            var email = document.getElementById("email").value;
-            var specialty = specialtyList.value;
+            let name = document.getElementById("name").value;
+            let surname = document.getElementById("surname").value;
+            let office = document.getElementById("office").value;
+            let email = document.getElementById("email").value;
+            let specialty = specialtyList.value;
 
             var data = {
                 name,

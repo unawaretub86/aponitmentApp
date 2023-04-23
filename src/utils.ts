@@ -9,7 +9,6 @@ export const toNewPerson = (object: any): newPerson => {
     phone: isStringOrNumber(object.phone),
     document: isStringOrNumber(object.document),
   };
-
   return newRecord;
 };
 
