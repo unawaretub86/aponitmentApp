@@ -5,10 +5,11 @@ export const toNewPerson = (object: any): newPerson => {
   const newRecord: newPerson = {
     name: verifyString(object.name),
     surname: verifyString(object.surname),
-    age: isStringOrNumber(object.age),
-    phone: isStringOrNumber(object.phone),
-    document: isStringOrNumber(object.document),
+    age: parseInt(object.age),
+    phone: parseInt(object.phone),
+    document: parseInt(object.document),
   };
+
   return newRecord;
 };
 

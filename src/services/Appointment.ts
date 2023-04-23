@@ -42,7 +42,7 @@ WHERE person_document  = $1`,
 
 export const getAllAppointments = async () => {
   let query = {
-    text: `SELECT person.id as person, doctor.name, doctor.surname, doctor.office, doctor.specialty
+    text: `SELECT person.id as person, doctor.name, doctor.surname, doctor.office, doctor.specialty, appointments.id 
 FROM appointments
 INNER JOIN doctor ON appointments.doctor_id = doctor.id
 INNER JOIN person ON appointments.person_id = person.id

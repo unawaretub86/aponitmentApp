@@ -25,4 +25,3 @@ app.use("/api/appointments/specialty", specialty);
 app.use("/api/appointments", appointment);
 
 app.listen(PORT);
-console.log("API escuchando en el puerto " + PORT);
