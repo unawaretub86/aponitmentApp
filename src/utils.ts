@@ -5,9 +5,9 @@ export const toNewPerson = (object: any): newPerson => {
   const newRecord: newPerson = {
     name: verifyString(object.name),
     surname: verifyString(object.surname),
-    age: isStringOrNumber(object.age),
-    phone: isStringOrNumber(object.phone),
-    document: isStringOrNumber(object.document),
+    age: parseInt(object.age),
+    phone: parseInt(object.phone),
+    document: parseInt(object.document),
   };
 
   return newRecord;
@@ -20,20 +20,14 @@ export const toNewDoctor = (object: any): newDoctor => {
     specialty: parseSpecialty(object.specialty),
     email: verifyString(object.email),
     office: verifyString(object.office),
-    age: isStringOrNumber(object.age),
-    phone: isStringOrNumber(object.phone),
-    document: isStringOrNumber(object.document),
   };
-
   return newRecord;
 };
 
 export const toAppointment = (object: any): newAppointment => {
   const newRecord: newAppointment = {
-    personId: isStringOrNumber(object.person_id),
-    doctorId: isStringOrNumber(object.doctor_id),
-    specialtyId: isStringOrNumber(object.specialty_id),
-    personDocument: isStringOrNumber(object.person_document),
+    specialty: parseSpecialty(object.specialty),
+    personDocument: parseInt(object.person_document),
   };
 
   return newRecord;
@@ -61,13 +55,3 @@ const verifyString = (stringFromRequest: any): string => {
 
   return stringFromRequest;
 };
-
-function isStringOrNumber(numberFromRequest: any): number {
-  if (
-    typeof numberFromRequest === "string" ||
-    (typeof numberFromRequest !== "number" && isNaN(numberFromRequest))
-  ) {
-    throw new Error("Bad type number");
-  }
-  return numberFromRequest;
-}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Doctores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lista de Doctores</h1>
+    <table id="tabla-doctores">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+                <th>Officina</th>
+            </tr>
+        </thead>
+        <tbody id="doctors-table"></tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            getDoctors();
+        });
+
+        function getDoctors() {
+            // Utilizar AJAX para obtener datos de la base de datos
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8080/api/appointments/doctor', true);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var doctors = JSON.parse(xhr.responseText);
+                    showDoctors(doctors);
+                } else {
+                    console.error('Error al obtener los datos de los doctores');
+                }
+            };
+            xhr.send();
+        }
+
+        function showDoctors(doctors) {
+            var table = document.getElementById('doctors-table');
+            table.innerHTML = '';
+
+            // Crear filas de la tabla con los datos de los doctores
+            for (var i = 0; i < doctors.length; i++) {
+                var doctor = doctors[i];
+                var row = table.insertRow();
+                var idColumn = row.insertCell(0);
+                var nameColumn = row.insertCell(1);
+                var surnameColumn = row.insertCell(2);
+                var specialtyColumn = row.insertCell(3);
+                var officeColumn = row.insertCell(4);
+
+                idColumn.textContent = doctor.id;
+                nameColumn.textContent = doctor.name;
+                surnameColumn.textContent = doctor.surname;
+                specialtyColumn.textContent = doctor.specialty;
+                officeColumn.textContent = doctor.office;
+            }
+        }
+
+    </script>
+</body>
+
+</html>

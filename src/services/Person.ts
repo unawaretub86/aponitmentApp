@@ -16,7 +16,6 @@ export const createPerson = (newPerson: newPerson) => {
 
   pool.query(query, (err, res) => {
     if (err) {
-      console.error(err);
       return err.stack;
     }
     return res;

@@ -9,7 +9,7 @@ router.post("/create", (req, res) => {
   try {
     const newDoctor = toNewDoctor(req.body);
     const createdDoctor = createDoctor(newDoctor);
-    res.json(createdDoctor);
+    res.status(200).json({ doctor: createdDoctor });
   } catch (e) {
     res.status(400).json({ message: e + "" });
   }

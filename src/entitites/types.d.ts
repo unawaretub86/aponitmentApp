@@ -6,16 +6,16 @@ export interface Person {
   document: number;
 }
 
-export interface Doctor extends Person {
+export interface Doctor {
+  name: string;
+  surname: string;
   specialty: Specialties;
   office: string;
   email: string;
 }
 
 export interface Appointment {
-  personId: number;
-  doctorId: number;
-  specialtyId: number;
+  specialty: Specialties;
   personDocument: number;
 }
 

@@ -18,10 +18,9 @@ CREATE TABLE doctor (
 );
 
 CREATE TABLE appointments (
-	person_id integer NOT NULL,
-	doctor_id integer NOT NULL,
-	created_at timestamptz NULL,
-	updated_at timestamptz NULL
+	id integer NOT NULL GENERATED ALWAYS AS IDENTITY
+	specialty varchar NOT NULL
+	person_document varchar NOT NULL
 );
 
 CREATE TABLE specialty (
@@ -40,13 +39,14 @@ ALTER TABLE person ALTER COLUMN phone TYPE bigint USING phone::bigint;
 ALTER TABLE doctor ADD "document" bigint NOT NULL;
 ALTER TABLE doctor ADD age bigint NOT NULL;
 ALTER TABLE doctor ADD phone bigint NOT NULL;
+ALTER TABLE doctor DROP COLUMN age;
+ALTER TABLE doctor DROP COLUMN phone;
+ALTER TABLE doctor DROP COLUMN "document";
+
 
 --appointments
-
-ALTER TABLE appointments ADD id integer NOT NULL GENERATED ALWAYS AS IDENTITY;
 ALTER TABLE appointments ADD COLUMN created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE appointments ADD COLUMN updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-ALTER TABLE appointments ADD person_document bigint NOT NULL;
 
 
 
