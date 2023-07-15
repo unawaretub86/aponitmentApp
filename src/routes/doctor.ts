@@ -1,6 +1,7 @@
 import express from "express";
 import { toNewDoctor } from "../utils";
-import { createDoctor, getDoctors } from "../services/Doctor";
+import { createDoctor } from "../services/Doctor";
+import { index } from "../controllers/doctorController";
 
 const router = express.Router();
 
@@ -14,13 +15,6 @@ router.post("/create", (req, res) => {
   }
 });
 
-router.get("/", async (_, res) => {
-  try {
-    const doctors = await getDoctors();
+router.get("/doctor", index);
 
-    res.json(doctors);
-  } catch (e) {
-    res.status(400).json({ message: "e.message" });
-  }
-});
 export default router;

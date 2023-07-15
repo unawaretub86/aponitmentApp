@@ -1,0 +1,28 @@
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mt-12">
+        <button onclick="logMessage()">Click me</button>
+        <table class="table-fixed w-full">
+            <thead>
+                <tr class="bg-green-500 text-white">
+                    <th class="w-20 py-4 ...">ID</th>
+                    <th class="w-1/4 py-4 ...">Nombre</th>
+                    <th class="w-1/2 py-4 ...">Apellido</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each doctor}}
+                <tr>
+                    <td class="py-3 px-6">{{id}}</td>
+                    <td class="p-3">{{name}}</td>
+                    <td class="p-3 text-center">{{surname}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script>
+            function logMessage() {
+                console.log("doctor");
+            }
+        </script>
+    </div>
+</div>
